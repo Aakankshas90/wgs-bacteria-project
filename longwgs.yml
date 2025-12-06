@@ -1,0 +1,15 @@
+name: longwgs
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - nanofilt
+  - nanoplot
+  - flye
+  - minimap2
+  - samtools
+  - racon
+  - medaka
+  - ncbi-amrfinderplus
