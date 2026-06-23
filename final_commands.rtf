@@ -1,0 +1,96 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;\red0\green0\blue0;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\csgray\c95825;\csgray\c0\c85000;\cssrgb\c0\c0\c0;
+}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf2 \cb3 \CocoaLigature0 flye --nano-raw /Users/aakanksha/Downloads/BI-ANA-9776/oldResults/M12_132_filtered.fastq \\\
+     --out-dir /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132 \\\
+     --genome-size 5m \\\
+     --threads 6 \\\
+     --asm-coverage 100 \\\
+     --min-overlap 1000\
+\
+minimap2 -x map-ont -t 6 -a \\\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2   /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly.fasta \\\
+  /Users/aakanksha/Downloads/BI-ANA-9776/oldResults/L25_7_filtered.fastq \\\
+  > /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/aln.sam\
+\
+racon -t 6 \\\
+  /Users/aakanksha/Downloads/BI-ANA-9776/oldResults/L25_7_filtered.fastq \\\
+  /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/aln.sam \\\
+  /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly.fasta \\\
+  > /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly_racon1.fasta\
+[racon::Polisher::initialize] loaded target sequences 0.014008 s\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \outl0\strokewidth0 \strokec4 minimap2 -t 6 -x map-ont -a \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly_racon1.fasta \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/oldResults/L25_7_filtered.fastq \\\
+> /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/aln_racon1.sam\
+racon -t 6 \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/oldResults/L25_7_filtered.fastq \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/aln_racon1.sam \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly_racon1.fasta \\\
+> /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/assembly_racon2.fasta\
+minimap2 -t 6 -x map-ont -a \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/assembly_racon1.fasta \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/oldResults/M12_132_filtered.fastq \\\
+> /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/aln_racon1.sam\
+racon -t 6 \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/oldResults/M12_132_filtered.fastq \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/aln_racon1.sam \\\
+/Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/assembly_racon1.fasta \\\
+> /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/assembly_racon2.fasta\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf2 \cb3 \CocoaLigature0 # Tell Conda to use the x86_64 (Intel) subdir\
+CONDA_SUBDIR=osx-64 conda create -n quast_env -c bioconda -c conda-forge python=3.10 quast\
+\
+\
+\
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 quast /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M25_132/medaka/consensus.fasta \\\
+      -o /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M25_132/quast_results\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 quast /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/medaka/consensus.fasta \\\
+      -o /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/quast_results\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 busco \\\
+  -i /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/medaka/consensus.fasta \\  \
+  -o /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_L25_7/L25_7_busco \\    \
+  -l bacteria_odb10 \\                                             \
+  -m genome \\                                    \
+  --cpu 6  \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 busco \\\
+  -i /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/medaka/consensus.fasta \\\
+  -o /Users/aakanksha/Downloads/BI-ANA-9776/flye_subsampled_M12_132/M12_132_busco \\\
+  -l bacteria_odb10 \\                                             \
+  -m genome \\                                    \
+  --cpu 6 \
+\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 mkdir -p ~/Downloads/BI-ANA-9776/flye_subsampled_L25_7/medaka\
+mkdir -p ~/Downloads/BI-ANA-9776/flye_subsampled_M12_132/medaka\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 \
+\kerning1\expnd0\expndtw0 \outl0\strokewidth0 cd ~/Downloads/BI-ANA-9776\
+BI-ANA-9776 % docker run --rm --platform linux/amd64 -v "$PWD":/data staphb/abricate \\\
+  sh -c "abricate --db card /data/flye_subsampled_L25_7/medaka/consensus.fasta \\\
+  > /data/flye_subsampled_L25_7/medaka/L25_7_resistance_CARD.tsv"\
+docker run --rm --platform linux/amd64 -v "$PWD":/data staphb/abricate \\\
+  sh -c "abricate --db card /data/flye_subsampled_M12_132/medaka/consensus.fasta \\\
+  > /data/flye_subsampled_M12_132/medaka/M12_132_resistance_CARD.tsv"\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 \
+}
