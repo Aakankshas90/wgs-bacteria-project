@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a reproducible workflow for bacterial genome assembly and antimicrobial resistance profiling using Oxford Nanopore long-read sequencing data.
+This repository contains the history of commands used and a workflow for bacterial genome assembly and antimicrobial resistance profiling using Oxford Nanopore long-read sequencing data for two different bacterial strains.
 
 ## Workflow
 Read QC (NanoPlot)
@@ -12,6 +12,7 @@ Assembly QC (QUAST)
 Polishing (Racon + Medaka)
 Annotation (Prokka)
 AMR detection (Abricate, AMRFinderPlus)
+Virulence detection, etc.
 16S phylogenetic analysis
 
 ## Tools
